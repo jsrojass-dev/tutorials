@@ -1,0 +1,8 @@
+---
+services:
+  flask:
+    image: juansrojass/tutorials:flaskimage
+    ports:
+      - 7070:8080
+    environment:
+      - APP_VERSION=0.1.0
