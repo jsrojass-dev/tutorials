@@ -2,7 +2,22 @@
 services:
   flask:
     image: juansrojass/tutorials:flaskimage
+    build:
+      context: flask
+      dockerfile: Dockerfile
     ports:
       - 7070:8080
+    env_file:
+      - path: ./flask/dev.env
+    secrets:
+      - api_key
+      - source: api_key
+        target: /api_key.txt
     environment:
       - APP_VERSION=0.1.0
+      - DB_PASSWORD
+      - APP_TOKEN=${APP_TOKEN}
+
+secrets:
+  api_key:
+    file: ./flask/api_key.txt
